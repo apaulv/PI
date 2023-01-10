@@ -101,7 +101,7 @@ std::string DBM::getQuery(
 	}
 	else if (queryType == "INSERT")
 	{
-		query = std::string("INSERT INTO " + table + " VALUES " + data + ";");
+		query = std::string("INSERT INTO " + table + " VALUES " + data);
 	}
 	else if (queryType == "DELETE")
 	{
@@ -128,6 +128,8 @@ std::string DBM::getQuery(
 			}
 		}
 	}
+
+	query += ";";
 
 	return query;
 }

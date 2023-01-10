@@ -8,7 +8,7 @@ void view_item_button ()
 
     if(app != nullptr)
     {
-        app->setActiveMenu("item" + item + "ViewMenu");
+        app->setActiveMenu("item1ViewMenu");
         traveresedMenus.push_back("itemSelect");
 
         for(easyGUI::Component* element : app->getActiveMenu()->getAllComponents()) {
@@ -29,7 +29,7 @@ void edit_item_action ()
 
     if(app != nullptr)
     {
-        app->setActiveMenu("item" + item + "EditMenu");
+        app->setActiveMenu("item1EditMenu");
         traveresedMenus.push_back("itemSelect");
 
         for(easyGUI::Component* element : app->getActiveMenu()->getAllComponents()) {

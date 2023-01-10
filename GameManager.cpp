@@ -5,6 +5,7 @@
 #include <string>
 
 #include "routines.hpp"
+#include "Arena.hpp"
 #include "menus.hpp"
 
 using namespace easyGUI;
@@ -30,6 +31,8 @@ int main()
 
     try
     {
+        init();
+
         // Creating menus
         createMainMenu(app);
         createSecondMenu(app);
@@ -38,7 +41,6 @@ int main()
         createItemEditMenu(app);
         createItemsMenu(app);
         createItemViewMenu(app);
-        createShopMenu(app);
 
         // Starting the application
         app->start();

@@ -27,27 +27,29 @@ void createItemsMenu(Application* appInstance)
 
     AddElement(menu, new Label(Point(300, 50), "Items", "./res/Arial.ttf", 35), "title");
     
-    while (res->next())
+    unsigned counter = 0;
+    while (res->next() && counter < 4)
     {
-        AddElement(menu, new Label(Point(50, 150), res->getString("Name"), "./res/Arial.ttf", 25), "WorldName" + res->getString("ID"));
+        AddElement(menu, new Label(Point(50, 150 + 50 * counter), res->getString("Name"), "./res/Arial.ttf", 25), "WorldName" + res->getString("ID"));
 
-        AddElement(menu, new ItemFactory(Point(590, 150), Point(620, 180), "./res/view.png", res->getString("ID")), "viewBtn" + res->getString("ID"));
-        AddElement(menu, new ItemFactory(Point(630, 150), Point(660, 180), "./res/edit.png", res->getString("ID")), "editBtn" + res->getString("ID"));
-        AddElement(menu, new ItemFactory(Point(670, 150), Point(700, 180), "./res/delete.png", res->getString("ID")), "deleteBtn" + res->getString("ID"));
+        AddElement(menu, new ItemFactory(Point(590, 150 + 50 * counter), Point(620, 180 + 50 * counter), "./res/view.png", res->getString("ID")), "viewBtn" + res->getString("ID"));
+        AddElement(menu, new ItemFactory(Point(630, 150 + 50 * counter), Point(660, 180 + 50 * counter), "./res/edit.png", res->getString("ID")), "editBtn" + res->getString("ID"));
+        AddElement(menu, new ItemFactory(Point(670, 150 + 50 * counter), Point(700, 180 + 50 * counter), "./res/delete.png", res->getString("ID")), "deleteBtn" + res->getString("ID"));
 
-        AddElement(menu, new Button(Point(50, 185), Point(700, 186), "", "./res/Arial.ttf", 0), "Line" + res->getString("ID"));
+        AddElement(menu, new Button(Point(50, 185 + 50 * counter), Point(700, 186 + 50 * counter), "", "./res/Arial.ttf", 0), "Line" + res->getString("ID"));
         Converter::getButton(menu->getComponent("Line" + res->getString("ID")))->getInternalButton().setFillColor(sf::Color::White);
         Converter::getButton(menu->getComponent("Line" + res->getString("ID")))->getInternalButton().setOutlineThickness(1);
 
         menu->getComponent("viewBtn" + res->getString("ID"))->setOnClickAction(view_item_button);
         menu->getComponent("editBtn" + res->getString("ID"))->setOnClickAction(edit_item_action);
+        counter++;
     }
 
     delete res;
 
 
-    AddElement(menu, new Button(Point(150, 400), Point(400, 450), "Back", "./res/Arial.ttf", 25), "backBtn");
-    AddElement(menu, new Button(Point(450, 400), Point(700, 450), "Add item", "./res/Arial.ttf", 25), "itemCreate");
+    AddElement(menu, new Button(Point(100, 400), Point(350, 450), "Back", "./res/Arial.ttf", 25), "backBtn");
+    AddElement(menu, new Button(Point(400, 400), Point(650, 450), "Add item", "./res/Arial.ttf", 25), "itemCreate");
 
     menu->getComponent("backBtn")->setOnClickAction(backButton_action);
     menu->getComponent("itemCreate")->setOnClickAction(create_item_action);

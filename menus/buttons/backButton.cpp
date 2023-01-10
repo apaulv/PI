@@ -10,6 +10,9 @@ void backButton_action()
 
     if (app != nullptr)
     {
+        if (traveresedMenus.back() == "character1234")
+            create_character_menu(app);
+
         app->setActiveMenu(traveresedMenus.back());
         traveresedMenus.pop_back();
 

@@ -54,10 +54,20 @@ public:
 
 	virtual ~DBM() = default;
 
-
-	
-	
-	
+	/**
+	 * @brief Connects to the specified database
+	 * 
+	 * @details If connection is successful, it will return a DBM object.
+	 * Otherwise it returns NULLPTR.
+	 *
+	 * @param host The server's address
+	 * @param port The port
+	 * @param schema The database schema
+	 * @param username The user to use when connecting
+	 * @param password The password for the username
+	 * 
+	 * @return std::shared_ptr<DBM>
+	 */
 	static std::shared_ptr<DBM> getInstance(
 		const std::string& host,
 		const std::string& port,

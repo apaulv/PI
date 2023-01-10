@@ -41,6 +41,13 @@ void generateShopContents()
 
     delete res;
 
+    res = inst->runQuery(DBM::QueryType::SELECT, "players", "Gold", std::map<std::string, std::string>());
+    while (res->next())
+    {
+        cost = res->getInt("Gold");
+    }
+    delete res;
+
     std::sort(rarities.begin(), rarities.end(), [](Rarity r1, Rarity r2) -> bool { return r1.spawnChance < r2.spawnChance;  });
 
     // Selecting 3 random rarities
@@ -61,6 +68,7 @@ void generateShopContents()
                 i.rarity = r.id;
                 i.price = distr2(gen);
                 i.quantity = distr(gen);
+                i.bought = 0;
 
                 items.push_back(i);
                 break;
@@ -109,5 +117,8 @@ void createShopMenu(Application* appInstance)
         // Raise error if creating a menu fails
         throw MenuException("Could not create menu.");
 
-    AddElement(menu, new Label(Point(400, 50), "Shop", "./res/Arial.ttf", 35), "title");
+    AddElement(menu, new Label(Point(350, 50), "Shop", "./res/Arial.ttf", 35), "title");
+    AddElement(menu, new Button(Point(100, 500), Point(350, 550), "Back", "./res/Arial.ttf", 25), "backBtn");
+    
+    menu->getComponent("backBtn")->setOnClickAction(backButton_action);
 }
